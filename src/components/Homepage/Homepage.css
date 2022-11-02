@@ -1,0 +1,152 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Montserrat", sans-serif;
+}
+
+.home {
+  background-image: url(../asset/BG-GameNation.png);
+}
+
+.home-title {
+  margin-top: 25vh;
+  width: 80vh;
+}
+
+.title {
+  font-size: 120px;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.subtitle {
+  margin-top: 20px;
+  font-size: 30px;
+  font-weight: 500;
+}
+
+.logo {
+  width: auto;
+  height: 18vh;
+  position: sticky;
+  margin-left: 30px;
+  margin-top: -10px;
+}
+
+.gameboy {
+  width: auto;
+  height: 80vh;
+  margin-right: 7vw;
+  margin-top: 10vh;
+}
+
+.container-register {
+  margin-top: 60px;
+}
+
+.btn-regis {
+  height: 60px;
+  width: 120px;
+  border-radius: 10px;
+  background-color: #56240f;
+  margin-top: 0px;
+  margin-left: 15px;
+  transition: bottom ease 0.5s;
+}
+
+.btn-regis:hover {
+  top: 8px;
+  cursor: pointer;
+}
+
+.btn-regis:before {
+  content: "Register";
+  font-size: 20px;
+  font-weight: 500;
+  color: white;
+  padding-left: 15px;
+  padding-top: 13px;
+  height: 54px;
+  width: 114px;
+  border-radius: 10px;
+  background-color: #00bfc3;
+  display: block;
+  position: absolute;
+  margin-left: 3px;
+  margin-top: 3px;
+}
+.btn-regis:after {
+  content: "";
+  height: 5px;
+  width: 30px;
+  border-radius: 10px;
+  background-color: white;
+  display: block;
+  position: absolute;
+  margin-left: 75px;
+  margin-top: 8px;
+}
+
+.btn-regis-base {
+  height: auto;
+  width: 163px;
+  margin-top: 7px;
+  margin-left: -5px;
+}
+
+.container-login {
+  margin-top: 60px;
+  margin-left: 60px;
+}
+
+.btn-login {
+  height: 60px;
+  width: 120px;
+  border-radius: 10px;
+  background-color: #56240f;
+  margin-top: 0px;
+  margin-left: 15px;
+  transition: bottom ease 0.5s;
+}
+
+.btn-login:hover {
+  top: 8px;
+  cursor: pointer;
+}
+
+.btn-login:before {
+  content: "Login";
+  font-size: 20px;
+  font-weight: 500;
+  color: white;
+  padding-left: 28px;
+  padding-top: 13px;
+  height: 54px;
+  width: 114px;
+  border-radius: 10px;
+  background-color: #ff2273;
+  display: block;
+  position: absolute;
+  margin-left: 3px;
+  margin-top: 3px;
+}
+.btn-login:after {
+  content: "";
+  height: 5px;
+  width: 30px;
+  border-radius: 10px;
+  background-color: white;
+  display: block;
+  position: absolute;
+  margin-left: 75px;
+  margin-top: 8px;
+}
+
+.btn-login-base {
+  height: auto;
+  width: 163px;
+  margin-top: 7px;
+  margin-left: -5px;
+}
