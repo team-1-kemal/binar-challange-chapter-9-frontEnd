@@ -15,7 +15,7 @@ import axios from "../api/axios";
 const TEXT_REGEX = /^[a-zA-Z0-9_]+( [a-zA-Z0-9_]+)*$/;
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
 const EMAIL_REGEX = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
-const REGISTER_URL = "/register";
+const REGISTER_URL = "http://localhost:5000/auth/register";
 
 const Register = () => {
   const userRef = useRef();
@@ -113,18 +113,17 @@ const Register = () => {
     }
     console.log(email, password);
     setSuccess(true);
+    // const dataRegis = {
+    //   full_name: fullName,
+    //   email,
+    //   password,
+    //   city,
+    //   dob,
+    // };
 
     // try {
-    //   const response = await axios.post(
-    //     REGISTER_URL,
-    //     JSON.stringify({ fullName, email, password, city, dob }),
-    //     {
-    //       headers: { "Content-Type": "application/json" },
-    //       withCredentials: true,
-    //     }
-    //   );
+    //   const response = await axios.post(REGISTER_URL, dataRegis);
     //   console.log(response.data);
-    //   console.log(response.accessToken);
     //   console.log(JSON.stringify(response));
     //   setSuccess(true);
     // } catch (err) {

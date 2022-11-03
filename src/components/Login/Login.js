@@ -5,7 +5,7 @@ import axios from "../api/axios";
 import "./Login.css";
 import btnLogin from "../asset/btn-login.png";
 import logo from "../asset/Logo-GameNation.png";
-const LOGIN_URL = "/login";
+const LOGIN_URL = "http://localhost:5000/auth/login";
 
 const Login = () => {
   const { setAuth } = useContext(AuthContext);
@@ -31,15 +31,16 @@ const Login = () => {
     setPassword("");
     setSuccess(true);
 
+    // const dataLogin = {
+    //   email,
+    //   password,
+    // };
+
     // try {
-    //   const response = await axios.post(
-    //     LOGIN_URL,
-    //     JSON.stringify(email, password),
-    //     {
-    //       headers: { "Content-Type": "application/json" },
-    //       withCredentials: true,
-    //     }
-    //   );
+    //   const response = await axios.post(LOGIN_URL, dataLogin, {
+    //     headers: { "Content-Type": "application/json" },
+    //     withCredentials: true,
+    //   });
     //   console.log(JSON.stringify(response?.data));
     //   const token = response?.data?.token;
     //   setAuth({ email, password, token });
