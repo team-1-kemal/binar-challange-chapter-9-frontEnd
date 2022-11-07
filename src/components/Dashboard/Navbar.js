@@ -4,7 +4,15 @@ import logo from "../asset/Logo-GameNation.png";
 import { Link, useNavigate } from "react-router-dom";
 
 const Navbar = () => {
+  const username = localStorage.getItem("name");
+  console.log(username);
   const navigate = useNavigate();
+  const handleLogOut = () => {
+    localStorage.removeItem("name");
+    localStorage.removeItem("id");
+    localStorage.removeItem("token");
+    navigate("/");
+  };
   return (
     <section className="flex items-center justify-between w-full p-4 z-[100] absolute nav-page">
       <img src={logo} alt="logo" className="nav-logo" />
@@ -19,11 +27,13 @@ const Navbar = () => {
 
       <div className="flex items-center gap-5 nav-comp">
         <p className="text-black pr-4 text-xl font-semibold mt-4">
-          Welcome "Agent XXX"
+          Welcome, {username}
         </p>
+
         <button
-          onClick={() => navigate("/")}
+          type="button"
           className="bg-red-600 px-6 py-2 rounded cursor-pointer text-white"
+          onClick={handleLogOut}
         >
           Log Out
         </button>

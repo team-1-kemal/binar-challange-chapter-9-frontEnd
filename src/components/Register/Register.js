@@ -15,7 +15,6 @@ import axios from "../api/axios";
 const TEXT_REGEX = /^[a-zA-Z0-9_]+( [a-zA-Z0-9_]+)*$/;
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
 const EMAIL_REGEX = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
-const REGISTER_URL = "http://localhost:5000/auth/signup";
 
 const Register = () => {
   const userRef = useRef();
@@ -111,29 +110,28 @@ const Register = () => {
       setErrMsg("Invalid Entry");
       return;
     }
-    console.log(email, password);
-    setSuccess(true);
-    // const dataRegis = {
-    //   full_name: fullName,
-    //   email,
-    //   password,
-    //   city,
-    //   dob,
-    // };
 
-    // try {
-    //   const response = await axios.post(REGISTER_URL, dataRegis);
-    //   console.log(response.data);
-    //   console.log(JSON.stringify(response));
-    //   setSuccess(true);
-    // } catch (err) {
-    //   if (!err?.response) {
-    //     setErrMsg("No Server Response");
-    //   } else if (err.response?.status === 409) {
-    //     setErrMsg("Registration Failed");
-    //   }
-    //   errRef.current.focus();
-    // }
+    const dataRegis = {
+      fullName,
+      email,
+      password,
+      city,
+      dob,
+    };
+
+    try {
+      const response = await axios.post("/auth/signup", dataRegis);
+      console.log(response.data);
+      console.log(JSON.stringify(response));
+      setSuccess(true);
+    } catch (err) {
+      if (!err?.response) {
+        setErrMsg("No Server Response");
+      } else if (err.response?.status === 409) {
+        setErrMsg("Registration Failed");
+      }
+      errRef.current.focus();
+    }
   };
 
   return (
@@ -141,7 +139,7 @@ const Register = () => {
       {success ? (
         <section className="regis_success flex">
           <div className="relative">
-            <img src={boxRegis} className="regis_box-success" />
+            <img src={boxRegis} alt="box" className="regis_box-success" />
             <div className="regis_success-text flex flex-col items-center absolute">
               <h1>Registration Success!</h1>
               <p>
@@ -153,7 +151,7 @@ const Register = () => {
         </section>
       ) : (
         <section className="register-page">
-          <img src={logo} className="regis_logo-gn" />
+          <img src={logo} alt="logo" className="regis_logo-gn" />
           <div className="register-comp">
             <p
               ref={errRef}
@@ -391,6 +389,7 @@ const Register = () => {
               <div className="register_btn-regis-comp">
                 <img
                   src={btnRegis}
+                  alt="button"
                   className="absolute register_btn-regis-base"
                 />
                 <button
