@@ -1,10 +1,6 @@
 import { useRef, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import {
-  faCheck,
-  faTimes,
-  faInfoCircle,
-} from "@fortawesome/free-solid-svg-icons";
+import { faCheck, faTimes, faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./Register.css";
 import logo from "../asset/Logo-GameNation.png";
@@ -15,7 +11,6 @@ import axios from "../api/axios";
 const TEXT_REGEX = /^[a-zA-Z0-9_]+( [a-zA-Z0-9_]+)*$/;
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
 const EMAIL_REGEX = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
-const REGISTER_URL = "http://localhost:5000/auth/register";
 
 const Register = () => {
   const userRef = useRef();
@@ -111,29 +106,28 @@ const Register = () => {
       setErrMsg("Invalid Entry");
       return;
     }
-    console.log(email, password);
-    setSuccess(true);
-    // const dataRegis = {
-    //   full_name: fullName,
-    //   email,
-    //   password,
-    //   city,
-    //   dob,
-    // };
 
-    // try {
-    //   const response = await axios.post(REGISTER_URL, dataRegis);
-    //   console.log(response.data);
-    //   console.log(JSON.stringify(response));
-    //   setSuccess(true);
-    // } catch (err) {
-    //   if (!err?.response) {
-    //     setErrMsg("No Server Response");
-    //   } else if (err.response?.status === 409) {
-    //     setErrMsg("Registration Failed");
-    //   }
-    //   errRef.current.focus();
-    // }
+    const dataRegis = {
+      fullName,
+      email,
+      password,
+      city,
+      dob,
+    };
+
+    try {
+      const response = await axios.post("/auth/signup", dataRegis);
+      console.log(response.data);
+      console.log(JSON.stringify(response));
+      setSuccess(true);
+    } catch (err) {
+      if (!err?.response) {
+        setErrMsg("No Server Response");
+      } else if (err.response?.status === 409) {
+        setErrMsg("Registration Failed");
+      }
+      errRef.current.focus();
+    }
   };
 
   return (
@@ -141,7 +135,7 @@ const Register = () => {
       {success ? (
         <section className="regis_success flex">
           <div className="relative">
-            <img src={boxRegis} className="regis_box-success" />
+            <img src={boxRegis} alt="box" className="regis_box-success" />
             <div className="regis_success-text flex flex-col items-center absolute">
               <h1>Registration Success!</h1>
               <p>
@@ -153,13 +147,9 @@ const Register = () => {
         </section>
       ) : (
         <section className="register-page">
-          <img src={logo} className="regis_logo-gn" />
+          <img src={logo} alt="logo" className="regis_logo-gn" />
           <div className="register-comp">
-            <p
-              ref={errRef}
-              className={errMsg ? "errmsg" : "offscreen"}
-              aria-live="assertive"
-            >
+            <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">
               {errMsg}
             </p>
             <form onSubmit={handlerSubmit}>
@@ -171,11 +161,7 @@ const Register = () => {
                     <span className={validFullName ? "valid" : "hide"}>
                       <FontAwesomeIcon icon={faCheck} />
                     </span>
-                    <span
-                      className={
-                        validFullName || !fullName ? "hide" : "invalid"
-                      }
-                    >
+                    <span className={validFullName || !fullName ? "hide" : "invalid"}>
                       <FontAwesomeIcon icon={faTimes} />
                     </span>
                   </label>
@@ -192,14 +178,7 @@ const Register = () => {
                     onFocus={() => setFullNameFocus(true)}
                     onBlur={() => setFullNameFocus(false)}
                   />
-                  <p
-                    id="uidnote"
-                    className={
-                      fullNameFocus && fullName && !validFullName
-                        ? "instructions"
-                        : "offscreen"
-                    }
-                  >
+                  <p id="uidnote" className={fullNameFocus && fullName && !validFullName ? "instructions" : "offscreen"}>
                     <FontAwesomeIcon icon={faInfoCircle} />
                     Please input your name correctly.
                   </p>
@@ -226,16 +205,8 @@ const Register = () => {
                     onBlur={() => setEmailFocus(false)}
                   />
 
-                  <p
-                    id="uidnote"
-                    className={
-                      emailFocus && email && !validEmail
-                        ? "instructions"
-                        : "offscreen"
-                    }
-                  >
-                    <FontAwesomeIcon icon={faInfoCircle} /> Please input your
-                    email account correctly
+                  <p id="uidnote" className={emailFocus && email && !validEmail ? "instructions" : "offscreen"}>
+                    <FontAwesomeIcon icon={faInfoCircle} /> Please input your email account correctly
                   </p>
 
                   <label htmlFor="city">
@@ -260,14 +231,7 @@ const Register = () => {
                     onFocus={() => setCityFocus(true)}
                     onBlur={() => setCityFocus(false)}
                   />
-                  <p
-                    id="uidnote"
-                    className={
-                      cityFocus && city && !validCity
-                        ? "instructions"
-                        : "offscreen"
-                    }
-                  >
+                  <p id="uidnote" className={cityFocus && city && !validCity ? "instructions" : "offscreen"}>
                     <FontAwesomeIcon icon={faInfoCircle} /> 4 to 24 characters.
                     <br />
                     Must begin with a letter.
@@ -299,14 +263,7 @@ const Register = () => {
                     onFocus={() => setDobFocus(true)}
                     onBlur={() => setDobFocus(false)}
                   />
-                  <p
-                    id="uidnote"
-                    className={
-                      dobFocus && dob && !validDob
-                        ? "instructions"
-                        : "offscreen"
-                    }
-                  >
+                  <p id="uidnote" className={dobFocus && dob && !validDob ? "instructions" : "offscreen"}>
                     <FontAwesomeIcon icon={faInfoCircle} /> 4 to 24 characters.
                     <br />
                     Must begin with a letter.
@@ -319,9 +276,7 @@ const Register = () => {
                     <span className={validPwd ? "valid" : "hide"}>
                       <FontAwesomeIcon icon={faCheck} />
                     </span>
-                    <span
-                      className={validPwd || !password ? "hide" : "invalid"}
-                    >
+                    <span className={validPwd || !password ? "hide" : "invalid"}>
                       <FontAwesomeIcon icon={faTimes} />
                     </span>
                   </label>
@@ -337,22 +292,14 @@ const Register = () => {
                     onFocus={() => setPwdFocus(true)}
                     onBlur={() => setPwdFocus(false)}
                   />
-                  <p
-                    id="pwdnote"
-                    className={
-                      pwdFocus && !validPwd ? "instructions" : "offscreen"
-                    }
-                  >
+                  <p id="pwdnote" className={pwdFocus && !validPwd ? "instructions" : "offscreen"}>
                     <FontAwesomeIcon icon={faInfoCircle} />8 to 24 characters.
                     <br />
-                    Must include uppercase and lowercase letters, a number and a
-                    special character.
+                    Must include uppercase and lowercase letters, a number and a special character.
                     <br />
                     Allowed special characters:
                     <span aria-label="exclamation mark">!</span>
-                    <span aria-label="at symbol">@</span>{" "}
-                    <span aria-label="hashtag">#</span>{" "}
-                    <span aria-label="percent">%</span>
+                    <span aria-label="at symbol">@</span> <span aria-label="hashtag">#</span> <span aria-label="percent">%</span>
                   </p>
 
                   <label htmlFor="confirm_pwd">
@@ -360,9 +307,7 @@ const Register = () => {
                     <span className={validMatch && matchPwd ? "valid" : "hide"}>
                       <FontAwesomeIcon icon={faCheck} />
                     </span>
-                    <span
-                      className={validMatch || !matchPwd ? "hide" : "invalid"}
-                    >
+                    <span className={validMatch || !matchPwd ? "hide" : "invalid"}>
                       <FontAwesomeIcon icon={faTimes} />
                     </span>
                   </label>
@@ -377,33 +322,16 @@ const Register = () => {
                     onFocus={() => setMatchFocus(true)}
                     onBlur={() => setMatchFocus(false)}
                   />
-                  <p
-                    id="confirmnote"
-                    className={
-                      matchFocus && !validMatch ? "instructions" : "offscreen"
-                    }
-                  >
+                  <p id="confirmnote" className={matchFocus && !validMatch ? "instructions" : "offscreen"}>
                     <FontAwesomeIcon icon={faInfoCircle} />
                     Must match the first password input field.
                   </p>
                 </div>
               </div>
               <div className="register_btn-regis-comp">
-                <img
-                  src={btnRegis}
-                  className="absolute register_btn-regis-base"
-                />
-                <button
-                  disabled={
-                    !validPwd || !validMatch || !validEmail || !validFullName
-                      ? true
-                      : false
-                  }
-                >
-                  <div
-                    className="register_btn-regis relative"
-                    alt="button"
-                  ></div>
+                <img src={btnRegis} alt="button" className="absolute register_btn-regis-base" />
+                <button disabled={!validPwd || !validMatch || !validEmail || !validFullName ? true : false}>
+                  <div className="register_btn-regis relative" alt="button"></div>
                 </button>
               </div>
               <p className="register_text-sign-in">
