@@ -1,6 +1,6 @@
 import React from "react";
 
-const Profiles = ({ Leaderboard }) => {
+const Datauser = ({ Leaderboard }) => {
   return <div id="profile">{Item(Leaderboard)}</div>;
 };
 
@@ -29,4 +29,4 @@ const Item = (data) => {
   );
 };
 
-export default Profiles;
+export default Datauser;

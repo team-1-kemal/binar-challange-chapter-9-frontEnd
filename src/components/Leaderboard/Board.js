@@ -1,5 +1,5 @@
 import React from "react";
-import Profiles from "./Profiles";
+import Datauser from "./Datauser";
 import "./Board.css";
 import { Leaderboard } from "./Database";
 import logo from "../asset/logo-game.png";
@@ -39,7 +39,7 @@ const Board = () => {
           </div>
         </div>
 
-        <Profiles Leaderboard={sortUser(Leaderboard)} />
+        <Datauser Leaderboard={sortUser(Leaderboard)} />
       </div>
     </section>
   );
