@@ -3,6 +3,7 @@ import "./Dashboard.css";
 import gifRPS from "../asset/animate-rps.gif";
 import Navbar from "./Navbar";
 import GameList from "./GameList";
+import { Link } from "react-router-dom";
 
 const Dashboard = () => {
   const [games, setGames] = useState([]);
@@ -23,9 +24,11 @@ const Dashboard = () => {
           <br />
           our leaderboard!
         </p>
-        <button className="db_btn-play absolute bg-yellow-600 font-semibold px-6 py-2 rounded cursor-pointer text-white">
-          Play Now!
-        </button>
+        <Link to="/game">
+          <button className="db_btn-play absolute bg-yellow-600 font-semibold px-6 py-2 rounded cursor-pointer text-white">
+            Play Now!
+          </button>
+        </Link>
         <GameList />
       </div>
     </section>
