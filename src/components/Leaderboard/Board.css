@@ -49,12 +49,12 @@
   color: var(--color-light);
 }
 
-#profile {
+#data-user {
   /* display: flex; */
   margin-top: 3em;
 }
 
-#profile .flex {
+#data-user .flex {
   display: flex;
   justify-content: space-between;
   gap: 1em;
@@ -62,17 +62,17 @@
   margin-bottom: 2em;
 }
 
-#profile .flex .item {
+#data-user .flex .item {
   display: flex;
   align-items: center;
 }
 
-#profile .flex img {
+#data-user .flex img {
   width: 20%;
   border-radius: 50%;
 }
 
-#profile .flex .info {
+#data-user .flex .info {
   padding: 1em;
 }
 

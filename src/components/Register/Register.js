@@ -15,7 +15,7 @@ import axios from "../api/axios";
 const TEXT_REGEX = /^[a-zA-Z0-9_]+( [a-zA-Z0-9_]+)*$/;
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
 const EMAIL_REGEX = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
-const REGISTER_URL = "http://localhost:5000/auth/register";
+const REGISTER_URL = "http://localhost:5000/auth/signup";
 
 const Register = () => {
   const userRef = useRef();

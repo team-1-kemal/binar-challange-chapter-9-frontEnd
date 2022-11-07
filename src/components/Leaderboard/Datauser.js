@@ -1,7 +1,7 @@
 import React from "react";
 
 const Datauser = ({ Leaderboard }) => {
-  return <div id="profile">{Item(Leaderboard)}</div>;
+  return <div id="data-user">{Item(Leaderboard)}</div>;
 };
 
 const Item = (data) => {
