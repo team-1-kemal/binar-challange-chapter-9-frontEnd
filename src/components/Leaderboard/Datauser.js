@@ -11,7 +11,7 @@ const Item = (data) => {
       <span className="absolute inset-0 w-full h-full bg-white border-2 border-black group-hover:bg-black"></span>
       <span className="relative text-black group-hover:text-white">
         {data.map((value, index) => (
-          <div className="flex w-[500px] mx-auto mt-5" key={index}>
+          <div className="flex w-[500px] mx-auto mt-0" key={index}>
             <div className="item">
               <img src={value.img} alt="dp" />
               <div className="info">

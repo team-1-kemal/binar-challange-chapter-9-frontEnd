@@ -10,9 +10,9 @@ const Homepage = () => {
       <div className=" mx-auto home w-full h-screen bg-cover bg-center flex">
         <br />
         <img src={logo} alt="Logo" className="logo" />
-        <div className=" main-content gap-20 flex content-center ">
+        <div className="mx-auto w-[1200px] flex justify-between ">
           <div className="home-title">
-            <h1 className="title">
+            <h1 className="maintitle">
               Let <br /> the fun <br /> begin!
             </h1>
             <h4 className="subtitle">

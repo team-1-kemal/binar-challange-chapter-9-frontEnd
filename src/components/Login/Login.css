@@ -18,8 +18,8 @@
 
 .login-comp {
   width: 100%;
-  max-width: 620px;
-  min-height: 620px;
+  max-width: 550px;
+  min-height: 550px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -31,27 +31,28 @@
 
 .login_logo {
   height: auto;
-  width: 250px;
-  margin-top: -200px;
+  width: 150px;
+  margin-top: -100px;
 }
 
 .login_title {
-  font-size: 30px;
+  font-size: 20px;
+  text-align: center;
   font-weight: 600;
   margin-top: -70px;
   padding-bottom: 10px;
-  margin-left: 20px;
   color: white;
 }
 
 .login_subtitle {
-  font-size: 18px;
+  font-size: 15px;
   margin-bottom: 10px;
   color: white;
 }
 
 .login_label {
   color: white;
+  font-size: medium;
 }
 
 .login_form {
@@ -60,15 +61,15 @@
   justify-content: space-evenly;
   flex-grow: 0;
   width: 300px;
-  margin-left: 150px;
+  margin-left: 120px;
   margin-top: 100px;
   /* padding-bottom: 1rem; */
 }
 
 .login_text-signup {
   margin-top: 60px;
-  margin-left: 180px;
-  font-size: 17px;
+  margin-left: 175px;
+  font-size: 14px;
 }
 
 a,
@@ -83,7 +84,7 @@ input[type="date"],
 button,
 textarea {
   font-family: "Nunito", sans-serif;
-  font-size: 22px;
+  font-size: 18px;
   padding: 0.25rem;
   border-radius: 0.5rem;
 }

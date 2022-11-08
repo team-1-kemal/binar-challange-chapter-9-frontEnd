@@ -83,23 +83,23 @@ const Game = () => {
       <section className="game-page">
         <img
           src={window.location.origin + `/image/logo-game.png`}
-          className="w-64"
+          className="w-32"
           alt="logo"
         />
         <div className="game_score flex gap-96">
           <div>
-            <h1 className="text-center text-white text-3xl text-user-point">
+            <h1 className="text-center text-white text-xl text-user-point">
               User Points
             </h1>
-            <h5 className="text-center text-white text-5xl user-point mt-3">
+            <h5 className="text-center text-white text-3xl user-point mt-3">
               {userPoints}
             </h5>
           </div>
           <div>
-            <h1 className="text-center text-white text-3xl text-user-point">
+            <h1 className="text-center text-white text-xl text-user-point">
               Com Points
             </h1>
-            <h5 className="text-center text-white text-5xl user-point mt-3">
+            <h5 className="text-center text-white text-3xl user-point mt-3">
               {comPoints}
             </h5>
           </div>

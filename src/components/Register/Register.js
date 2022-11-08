@@ -161,7 +161,7 @@ const Register = () => {
               {errMsg}
             </p>
             <form onSubmit={handlerSubmit}>
-              <h1 className="text">Create New Agent</h1>
+              <h1 className="regis-title">Create New Agent</h1>
               <div className="flex-row flex">
                 <div className="form">
                   <label htmlFor="fullName">

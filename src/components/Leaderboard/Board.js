@@ -23,12 +23,12 @@ const Board = () => {
       </Link>
       <div className="board">
         <br />
-        <img src={logo} alt="logo" className="w-[200px] mx-auto" />
+        <img src={logo} alt="logo" className="w-[120px] absolute right-2" />
         <h1 className="leaderboard board-title text-2xl  font-semibold">
           Leaderboard
         </h1>
 
-        <div className="duration">
+        <div className="duration all-time">
           <div
             data-id="0"
             className="button mr-5 w-28 mt-5 ml-3 relative inline-block px-4 py-2 font-medium group"

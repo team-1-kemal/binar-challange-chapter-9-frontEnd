@@ -9,8 +9,8 @@
 }
 
 .pacman {
-  width: 176px;
-  height: 220px;
+  width: auto;
+  height: 130px;
   transition: 0.5s;
   display: flex;
   justify-content: center;
@@ -37,8 +37,8 @@
 }
 
 .sinvader {
-  width: 176px;
-  height: 220px;
+  width: auto;
+  height: 130px;
   transition: 0.5s;
   display: flex;
   justify-content: center;
@@ -65,8 +65,8 @@
 }
 
 .plane {
-  width: 176px;
-  height: 220px;
+  width: auto;
+  height: 130px;
   transition: 0.5s;
   display: flex;
   justify-content: center;
@@ -93,8 +93,8 @@
 }
 
 .punchout {
-  width: 176px;
-  height: 220px;
+  width: auto;
+  height: 130px;
   transition: 0.5s;
   display: flex;
   justify-content: center;
@@ -121,8 +121,8 @@
 }
 
 .outrun {
-  width: 176px;
-  height: 220px;
+  width: auto;
+  height: 130px;
   transition: 0.5s;
   display: flex;
   justify-content: center;
@@ -149,8 +149,8 @@
 }
 
 .cadillacs {
-  width: 176px;
-  height: 220px;
+  width: auto;
+  height: 130px;
   transition: 0.5s;
   display: flex;
   justify-content: center;
