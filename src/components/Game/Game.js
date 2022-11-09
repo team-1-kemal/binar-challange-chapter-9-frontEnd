@@ -1,17 +1,20 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import axios from "../api/axios";
 import "./Game.css";
 
 const Game = () => {
   const [userChoice, setUserChoice] = useState("rock");
   const [comChoice, setComChoice] = useState("rock");
-  const [userPoints, setUserPoints] = useState(0);
-  const [comPoints, setComPoints] = useState(0);
+  const [userScore, setUserScore] = useState(0);
+  const [comScore, setComScore] = useState(0);
   const [result, setResult] = useState("Lets see who wins");
   const [gameOver, setGameOver] = useState(false);
   const [btnDisabled, setBtnDisabled] = useState(false);
+  const [user, setUser] = useState({});
 
   const choice = ["rock", "paper", "scissors"];
+  const { userId } = useParams();
 
   const handleOnClick = (choice) => {
     setUserChoice(choice);
@@ -27,20 +30,33 @@ const Game = () => {
     window.location.reload();
   };
 
+  // useEffect(() => {
+  //   const player = axios
+  //     .get("/game/" + userId)
+  //     .then((user) => console.log(user))
+  //     .catch((err) => console.log(err));
+  //   setUser(player);
+  // }, []);
+
   useEffect(() => {
     const comboMoves = userChoice + comChoice;
-    if (userPoints <= 2 && comPoints <= 2) {
+    if (userScore <= 2 && comScore <= 2) {
       if (
         comboMoves === "rockscissors" ||
         comboMoves === "paperrock" ||
         comboMoves === "scissorspaper"
       ) {
-        const updatedUserPoints = userPoints + 1;
-        setUserPoints(updatedUserPoints);
-        if (updatedUserPoints === 3) {
+        const updatedUserScore = userScore + 1;
+        setUserScore(updatedUserScore);
+        if (updatedUserScore === 3) {
           setGameOver(true);
           setResult("Win!");
           setBtnDisabled(true);
+          const point = 100;
+          console.log(point);
+          // const payload = { point: (user.point += 100) };
+          // axios.put("/game/" + userId, payload);
+          // return user;
         }
       }
       if (
@@ -48,9 +64,9 @@ const Game = () => {
         comboMoves === "scissorsrock" ||
         comboMoves === "rockpaper"
       ) {
-        const updatedComputerPoints = comPoints + 1;
-        setComPoints(updatedComputerPoints);
-        if (updatedComputerPoints === 3) {
+        const updatedComputerScore = comScore + 1;
+        setComScore(updatedComputerScore);
+        if (updatedComputerScore === 3) {
           setGameOver(true);
           setResult("Lose!");
           setBtnDisabled(true);
@@ -92,7 +108,7 @@ const Game = () => {
               User Points
             </h1>
             <h5 className="text-center text-white text-3xl user-point mt-3">
-              {userPoints}
+              {userScore}
             </h5>
           </div>
           <div>
@@ -100,7 +116,7 @@ const Game = () => {
               Com Points
             </h1>
             <h5 className="text-center text-white text-3xl user-point mt-3">
-              {comPoints}
+              {comScore}
             </h5>
           </div>
         </div>

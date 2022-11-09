@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 
 const Dashboard = () => {
   const [games, setGames] = useState([]);
-
+  const userId = localStorage.getItem("id");
   return (
     <section className="dash_page flex my-auto">
       <Navbar />
@@ -24,7 +24,7 @@ const Dashboard = () => {
           <br />
           our leaderboard!
         </p>
-        <Link to="/game">
+        <Link to={"/game/" + { userId }}>
           <button className="db_btn-play absolute bg-yellow-600 font-semibold px-6 py-2 rounded cursor-pointer text-white">
             Play Now!
           </button>
