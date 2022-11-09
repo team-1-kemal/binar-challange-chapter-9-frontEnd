@@ -11,7 +11,6 @@
   background-image: url(../asset/bg-login.png);
   background-size: cover;
   background-repeat: no-repeat;
-  background-color: dodgerblue;
   font-family: "Nunito", sans-serif;
   font-size: 22px;
 }
@@ -67,7 +66,7 @@
 }
 
 .login_text-signup {
-  margin-top: 60px;
+  margin-top: 40px;
   margin-left: 175px;
   font-size: 14px;
 }
@@ -100,7 +99,7 @@ button {
 
 .login_btn-login-comp {
   margin-left: 76px;
-  margin-top: 20px;
+  margin-top: 40px;
 }
 
 .login_btn-login-base {
@@ -187,11 +186,14 @@ button {
 }
 
 .errmsg {
-  background-color: lightpink;
+  /* background-color: lightpink; */
+  position: absolute;
   color: firebrick;
   font-weight: bold;
+  font-size: medium;
   padding: 0.5rem;
-  margin-bottom: 0.5rem;
+  margin-left: 180px;
+  margin-top: 290px;
 }
 
 .line {

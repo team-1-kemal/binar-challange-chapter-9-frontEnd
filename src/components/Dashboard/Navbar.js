@@ -16,7 +16,7 @@ const Navbar = () => {
   return (
     <section className="flex items-center justify-between w-full p-4 z-[100] absolute nav-page">
       <img src={logo} alt="logo" className="nav-logo" />
-      <div className="flex nav-comp gap-10 ml-[210px]">
+      <div className="flex nav-comp gap-10 ml-[150px]">
         <Link to="/profile">
           <p className="text-black pr-4 text-lg font-bold mt-4">Profile</p>
         </Link>

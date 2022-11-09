@@ -1,0 +1,48 @@
+.edit-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  /* padding: 1rem 0.5rem; */
+  background-color: dodgerblue;
+  font-family: "Nunito", sans-serif;
+  font-size: 15px;
+  background-size: cover;
+  background-image: url(../asset/bg-profile.png);
+}
+
+.edit_success {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  /* padding: 1rem 0.5rem; */
+  background-color: dodgerblue;
+  font-family: "Nunito", sans-serif;
+  font-size: 22px;
+  background-size: cover;
+  background-image: url(../asset/bg-profile.png);
+}
+
+.edit-form {
+  display: flex;
+  flex-direction: column;
+
+  justify-content: space-evenly;
+  width: 350px;
+  /* flex-grow: 1; */
+  /* padding-bottom: 1rem; */
+  margin-top: 10px;
+}
+
+.edit-errmsg {
+  /* background-color: lightpink; */
+  color: firebrick;
+  font-weight: bold;
+  padding: 0.5rem;
+  position: absolute;
+  margin-top: 370px;
+  margin-left: 190px;
+}

@@ -155,7 +155,8 @@ const Register = () => {
           <div className="register-comp">
             <p
               ref={errRef}
-              className={errMsg ? "errmsg" : "offscreen"}
+              className={errMsg ? "reg-errmsg" : "offscreen"}
+              // className="errmsg"
               aria-live="assertive"
             >
               {errMsg}

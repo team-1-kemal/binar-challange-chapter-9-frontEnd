@@ -1,4 +1,5 @@
 import React from "react";
+import logoUser from "../asset/logo-user.png";
 
 const Datauser = ({ Leaderboard }) => {
   return <div id="data-user">{Item(Leaderboard)}</div>;
@@ -13,7 +14,7 @@ const Item = (data) => {
         {data.map((value, index) => (
           <div className="flex w-[500px] mx-auto mt-0" key={index}>
             <div className="item">
-              <img src={value.img} alt="dp" />
+              <img src={logoUser} alt="dp" />
               <div className="info">
                 <h3 className="name text-dark">{value.name}</h3>
                 <span>{value.location}</span>
