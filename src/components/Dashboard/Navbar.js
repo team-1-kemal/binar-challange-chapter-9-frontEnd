@@ -13,11 +13,12 @@ const Navbar = () => {
     localStorage.removeItem("token");
     navigate("/");
   };
+  const id = localStorage.getItem("id");
   return (
     <section className="flex items-center justify-between w-full p-4 z-[100] absolute nav-page">
       <img src={logo} alt="logo" className="nav-logo" />
       <div className="flex nav-comp gap-10 ml-[150px]">
-        <Link to="/profile">
+        <Link to={"/profile/" + id}>
           <p className="text-black pr-4 text-lg font-bold mt-4">Profile</p>
         </Link>
         <Link to="/leaderboard">
@@ -26,15 +27,9 @@ const Navbar = () => {
       </div>
 
       <div className="flex items-center gap-5 nav-comp">
-        <p className="text-black pr-4 text-lg font-semibold mt-4">
-          Welcome, {username}
-        </p>
+        <p className="text-black pr-4 text-lg font-semibold mt-4">Welcome, {username}</p>
 
-        <button
-          type="button"
-          className="bg-red-600 px-6 py-2 rounded cursor-pointer text-white"
-          onClick={handleLogOut}
-        >
+        <button type="button" className="bg-red-600 px-6 py-2 rounded cursor-pointer text-white" onClick={handleLogOut}>
           Log Out
         </button>
       </div>

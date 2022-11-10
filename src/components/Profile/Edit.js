@@ -1,10 +1,6 @@
 import { useRef, useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import {
-  faCheck,
-  faTimes,
-  faInfoCircle,
-} from "@fortawesome/free-solid-svg-icons";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import { faCheck, faTimes, faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./Edit.css";
 import logo from "../asset/Logo-GameNation.png";
@@ -17,8 +13,12 @@ const EMAIL_REGEX = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
 const Edit = () => {
   const userRef = useRef();
   const errRef = useRef();
+  const navigate = useNavigate();
+  const { userId } = useParams();
+  const token = localStorage.getItem("token");
 
   const [fullName, setFullName] = useState("");
+  const [userValue, setUserValue] = useState({});
   const [validFullName, setValidFullName] = useState(false);
   const [fullNameFocus, setFullNameFocus] = useState(false);
 
@@ -39,23 +39,21 @@ const Edit = () => {
 
   useEffect(() => {
     userRef.current.focus();
+    axios
+      .get("/user/profile/" + userId, { headers: { Authorization: token } })
+      .then((user) => {
+        setUserValue(user.data.data);
+      })
+      .catch((err) => console.log(err.message));
   }, []);
 
   useEffect(() => {
-    // let result = null;
-    // if (user === "") {
-    //   result = false;
-    // } else result = true;
     const result = TEXT_REGEX.test(fullName);
-    console.log(result);
-    console.log(fullName);
     setValidFullName(result);
   }, [fullName]);
 
   useEffect(() => {
     const result = EMAIL_REGEX.test(email);
-    console.log(result);
-    console.log(email);
     setValidEmail(result);
   }, [email]);
 
@@ -64,8 +62,6 @@ const Edit = () => {
     if (city === "") {
       result = false;
     } else result = true;
-    console.log(result);
-    console.log(city);
     setValidCity(result);
   }, [city]);
 
@@ -74,8 +70,6 @@ const Edit = () => {
     if (dob === "") {
       result = false;
     } else result = true;
-    console.log(result);
-    console.log(dob);
     setValidDob(result);
   }, [dob]);
 
@@ -83,8 +77,7 @@ const Edit = () => {
     setErrMsg("");
   }, [email]);
 
-  const handlerSubmit = async (e) => {
-    e.preventDefault();
+  const handleSubmit = () => {
     const v1 = EMAIL_REGEX.test(email);
     if (!v1) {
       setErrMsg("Invalid Entry");
@@ -98,19 +91,23 @@ const Edit = () => {
       dob,
     };
 
-    try {
-      const response = await axios.put("/auth/signup", dataEdit);
-      console.log(response.data);
-      console.log(JSON.stringify(response));
-      setSuccess(true);
-    } catch (err) {
-      if (!err?.response) {
-        setErrMsg("No Server Response");
-      } else if (err.response?.status === 409) {
-        setErrMsg("Edit Profile Failed");
-      }
-      errRef.current.focus();
-    }
+    console.log(dataEdit);
+    axios
+      .put("/user/profile/" + userId, dataEdit)
+      .then((response) => {
+        console.log(response.data);
+        console.log(JSON.stringify(response));
+        setSuccess(true);
+        navigate(-1);
+      })
+      .catch((err) => {
+        if (!err?.response) {
+          setErrMsg("No Server Response");
+        } else if (err.response?.status === 409) {
+          setErrMsg("Edit Profile Failed");
+        }
+        errRef.current.focus();
+      });
   };
 
   return (
@@ -131,10 +128,7 @@ const Edit = () => {
       ) : (
         <section className="edit-page">
           <img src={logo} alt="logo" className="regis_logo-gn" />
-          <div
-            data-id="0"
-            className=" w-[600px] h-[590px] mt-5 mx-auto relative inline-block px-4 py-2 font-medium group"
-          >
+          <div data-id="0" className=" w-[600px] h-[590px] mt-5 mx-auto relative inline-block px-4 py-2 font-medium group">
             <span className="absolute inset-0 w-full h-full   translate-x-1 translate-y-1 bg-black "></span>
             <span className="absolute inset-0 w-full h-full bg-slate-600 border-2 border-black "></span>
             <span className="relative text-white text-lg ">
@@ -148,10 +142,8 @@ const Edit = () => {
                   >
                     {errMsg}
                   </p>
-                  <form className="mx-auto mt-[40px]" onSubmit={handlerSubmit}>
-                    <h1 className="edit-title text-center font-semibold text-xl">
-                      Edit Your Agent
-                    </h1>
+                  <form className="mx-auto mt-[40px]">
+                    <h1 className="edit-title text-center font-semibold text-xl">Edit Your Agent</h1>
                     <div className="flex ml-[120px]">
                       <div className="relevant edit-form">
                         <label htmlFor="fullName">
@@ -159,11 +151,7 @@ const Edit = () => {
                           <span className={validFullName ? "valid" : "hide"}>
                             <FontAwesomeIcon icon={faCheck} />
                           </span>
-                          <span
-                            className={
-                              validFullName || !fullName ? "hide" : "invalid"
-                            }
-                          >
+                          <span className={validFullName || !fullName ? "hide" : "invalid"}>
                             <FontAwesomeIcon icon={faTimes} />
                           </span>
                         </label>
@@ -174,6 +162,7 @@ const Edit = () => {
                           name="fullName"
                           ref={userRef}
                           autoComplete="off"
+                          placeholder={userValue.full_name || ""}
                           onChange={(e) => setFullName(e.target.value)}
                           required
                           aria-invalid={validFullName ? "false" : "true"}
@@ -181,14 +170,7 @@ const Edit = () => {
                           onFocus={() => setFullNameFocus(true)}
                           onBlur={() => setFullNameFocus(false)}
                         />
-                        <p
-                          id="uidnote"
-                          className={
-                            fullNameFocus && fullName && !validFullName
-                              ? "instructions"
-                              : "offscreen"
-                          }
-                        >
+                        <p id="uidnote" className={fullNameFocus && fullName && !validFullName ? "instructions" : "offscreen"}>
                           <FontAwesomeIcon icon={faInfoCircle} />
                           Please input your name correctly.
                         </p>
@@ -197,11 +179,7 @@ const Edit = () => {
                           <span className={validEmail ? "valid" : "hide"}>
                             <FontAwesomeIcon icon={faCheck} />
                           </span>
-                          <span
-                            className={
-                              validEmail || !email ? "hide" : "invalid"
-                            }
-                          >
+                          <span className={validEmail || !email ? "hide" : "invalid"}>
                             <FontAwesomeIcon icon={faTimes} />
                           </span>
                         </label>
@@ -212,6 +190,7 @@ const Edit = () => {
                           className="text-black"
                           name="email"
                           autoComplete="off"
+                          placeholder={userValue.email || ""}
                           onChange={(e) => setEmail(e.target.value)}
                           required
                           aria-invalid={validEmail ? "false" : "true"}
@@ -220,16 +199,8 @@ const Edit = () => {
                           onBlur={() => setEmailFocus(false)}
                         />
 
-                        <p
-                          id="uidnote"
-                          className={
-                            emailFocus && email && !validEmail
-                              ? "instructions"
-                              : "offscreen"
-                          }
-                        >
-                          <FontAwesomeIcon icon={faInfoCircle} /> Please input
-                          your email account correctly
+                        <p id="uidnote" className={emailFocus && email && !validEmail ? "instructions" : "offscreen"}>
+                          <FontAwesomeIcon icon={faInfoCircle} /> Please input your email account correctly
                         </p>
 
                         <label htmlFor="city">
@@ -237,9 +208,7 @@ const Edit = () => {
                           <span className={validCity ? "valid" : "hide"}>
                             <FontAwesomeIcon icon={faCheck} />
                           </span>
-                          <span
-                            className={validCity || !city ? "hide" : "invalid"}
-                          >
+                          <span className={validCity || !city ? "hide" : "invalid"}>
                             <FontAwesomeIcon icon={faTimes} />
                           </span>
                         </label>
@@ -250,6 +219,7 @@ const Edit = () => {
                           className="text-black"
                           name="city"
                           autoComplete="off"
+                          placeholder={userValue.city || ""}
                           onChange={(e) => setCity(e.target.value)}
                           required
                           aria-invalid={validCity ? "false" : "true"}
@@ -257,16 +227,8 @@ const Edit = () => {
                           onFocus={() => setCityFocus(true)}
                           onBlur={() => setCityFocus(false)}
                         />
-                        <p
-                          id="uidnote"
-                          className={
-                            cityFocus && city && !validCity
-                              ? "instructions"
-                              : "offscreen"
-                          }
-                        >
-                          <FontAwesomeIcon icon={faInfoCircle} /> 4 to 24
-                          characters.
+                        <p id="uidnote" className={cityFocus && city && !validCity ? "instructions" : "offscreen"}>
+                          <FontAwesomeIcon icon={faInfoCircle} /> 4 to 24 characters.
                           <br />
                           Must begin with a letter.
                           <br />
@@ -278,9 +240,7 @@ const Edit = () => {
                           <span className={validDob ? "valid" : "hide"}>
                             <FontAwesomeIcon icon={faCheck} />
                           </span>
-                          <span
-                            className={validDob || !dob ? "hide" : "invalid"}
-                          >
+                          <span className={validDob || !dob ? "hide" : "invalid"}>
                             <FontAwesomeIcon icon={faTimes} />
                           </span>
                         </label>
@@ -291,6 +251,7 @@ const Edit = () => {
                           className="text-black"
                           name="dob"
                           autoComplete="off"
+                          placeholder={userValue.dob || ""}
                           onChange={(e) => setDob(e.target.value)}
                           required
                           aria-invalid={validDob ? "false" : "true"}
@@ -302,18 +263,14 @@ const Edit = () => {
 
                       <div className="form"></div>
                     </div>
-
-                    <button
-                      disabled={!validEmail || !validFullName ? true : false}
-                      class="px-5 py-2.5 relative rounded group font-medium text-white inline-block ml-[230px] mt-[60px]"
-                    >
-                      <span class="absolute top-0 left-0 w-full h-full rounded opacity-50 filter blur-sm bg-gradient-to-br from-purple-600 to-blue-500"></span>
-                      <span class="h-full w-full inset-0 absolute mt-0.5 ml-0.5 bg-gradient-to-br filter group-active:opacity-0 rounded opacity-50 from-purple-600 to-blue-500"></span>
-                      <span class="absolute inset-0 w-full h-full transition-all duration-200 ease-out rounded shadow-xl bg-gradient-to-br filter group-active:opacity-0 group-hover:blur-sm from-purple-600 to-blue-500"></span>
-                      <span class="absolute inset-0 w-full h-full transition duration-200 ease-out rounded bg-gradient-to-br to-slate-600 from-slate-500"></span>
-                      <span class="relative">Submit</span>
-                    </button>
                   </form>
+                  <button disabled={!validEmail || !validFullName ? true : false} className="px-5 py-2.5 relative rounded group font-medium text-white inline-block ml-[230px] mt-[60px]" onClick={handleSubmit}>
+                    <span className="absolute top-0 left-0 w-full h-full rounded opacity-50 filter blur-sm bg-gradient-to-br from-purple-600 to-blue-500"></span>
+                    <span className="h-full w-full inset-0 absolute mt-0.5 ml-0.5 bg-gradient-to-br filter group-active:opacity-0 rounded opacity-50 from-purple-600 to-blue-500"></span>
+                    <span className="absolute inset-0 w-full h-full transition-all duration-200 ease-out rounded shadow-xl bg-gradient-to-br filter group-active:opacity-0 group-hover:blur-sm from-purple-600 to-blue-500"></span>
+                    <span className="absolute inset-0 w-full h-full transition duration-200 ease-out rounded bg-gradient-to-br to-slate-600 from-slate-500"></span>
+                    <span className="relative">Submit</span>
+                  </button>
                 </div>
               </div>
             </span>

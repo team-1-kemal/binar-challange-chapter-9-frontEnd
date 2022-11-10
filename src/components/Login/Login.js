@@ -33,7 +33,7 @@ const Login = () => {
 
     try {
       const response = await axios.post("/auth/login", dataLogin);
-      localStorage.setItem("name", response.data.data.username);
+      localStorage.setItem("name", response.data.data.fullName);
       localStorage.setItem("id", response.data.data.userId);
       localStorage.setItem("token", response.data.data.token);
       // console.log(JSON.stringify(response?.data));
