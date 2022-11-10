@@ -52,20 +52,12 @@ const Register = () => {
   }, []);
 
   useEffect(() => {
-    // let result = null;
-    // if (user === "") {
-    //   result = false;
-    // } else result = true;
     const result = TEXT_REGEX.test(fullName);
-    console.log(result);
-    console.log(fullName);
     setValidFullName(result);
   }, [fullName]);
 
   useEffect(() => {
     const result = EMAIL_REGEX.test(email);
-    console.log(result);
-    console.log(email);
     setValidEmail(result);
   }, [email]);
 
@@ -74,8 +66,6 @@ const Register = () => {
     if (city === "") {
       result = false;
     } else result = true;
-    console.log(result);
-    console.log(city);
     setValidCity(result);
   }, [city]);
 
@@ -84,15 +74,11 @@ const Register = () => {
     if (dob === "") {
       result = false;
     } else result = true;
-    console.log(result);
-    console.log(dob);
     setValidDob(result);
   }, [dob]);
 
   useEffect(() => {
     const result = PWD_REGEX.test(password);
-    console.log(result);
-    console.log(password);
     setValidPwd(result);
     const match = password === matchPwd;
     setValidMatch(match);
@@ -121,7 +107,6 @@ const Register = () => {
 
     try {
       const response = await axios.post("/auth/signup", dataRegis);
-      console.log(response.data);
       console.log(JSON.stringify(response));
       setSuccess(true);
     } catch (err) {
@@ -156,7 +141,6 @@ const Register = () => {
             <p
               ref={errRef}
               className={errMsg ? "reg-errmsg" : "offscreen"}
-              // className="errmsg"
               aria-live="assertive"
             >
               {errMsg}

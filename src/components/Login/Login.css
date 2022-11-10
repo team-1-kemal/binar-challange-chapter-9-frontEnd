@@ -25,7 +25,6 @@
   padding: 1rem;
   background-image: url(../asset/box-login.png);
   background-size: cover;
-  /* background-color: rgba(0, 0, 0, 0.4); */
 }
 
 .login_logo {
@@ -62,7 +61,6 @@
   width: 300px;
   margin-left: 120px;
   margin-top: 100px;
-  /* padding-bottom: 1rem; */
 }
 
 .login_text-signup {
@@ -186,7 +184,6 @@ button {
 }
 
 .errmsg {
-  /* background-color: lightpink; */
   position: absolute;
   color: firebrick;
   font-weight: bold;

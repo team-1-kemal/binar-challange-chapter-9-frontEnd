@@ -1,11 +1,5 @@
 import React from "react";
 import "./GameList.css";
-import pacman from "../asset/poster-pacman.png";
-import sinvader from "../asset/spaceinvader.png";
-import plane from "../asset/1942.png";
-import punchout from "../asset/punchout.png";
-import outrun from "../asset/outrun.png";
-import cadillacs from "../asset/cadillacs.png";
 
 const GameList = () => {
   return (

@@ -6,7 +6,6 @@
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  /* padding: 1rem 0.5rem; */
   background-color: dodgerblue;
   font-family: "Nunito", sans-serif;
   font-size: 15px;
@@ -47,7 +46,6 @@
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  /* padding: 1rem 0.5rem; */
   background-color: dodgerblue;
   font-family: "Nunito", sans-serif;
   font-size: 22px;
@@ -70,11 +68,8 @@
 .form {
   display: flex;
   flex-direction: column;
-
   justify-content: space-evenly;
   width: 250px;
-  /* flex-grow: 1; */
-  /* padding-bottom: 1rem; */
   margin-left: 85px;
   margin-top: 10px;
 }
@@ -194,7 +189,6 @@ button {
 }
 
 .reg-errmsg {
-  /* background-color: lightpink; */
   color: firebrick;
   font-weight: bold;
   padding: 0.5rem;
