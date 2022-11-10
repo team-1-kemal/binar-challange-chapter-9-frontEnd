@@ -1,0 +1,32 @@
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
+
+.game-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  padding: 1rem 0.5rem;
+  min-height: 100vh;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-image: url(../../../public/image/bg-game.png);
+}
+
+.choice-user {
+  transform: scaleX(-1);
+}
+
+.user-point {
+  font-family: "Press Start 2P", cursive;
+}
+
+.choices {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.text-result {
+  font-family: "Press Start 2P", cursive;
+}
