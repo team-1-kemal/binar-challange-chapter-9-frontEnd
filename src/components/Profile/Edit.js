@@ -1,10 +1,6 @@
 import { useRef, useState, useEffect } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import {
-  faCheck,
-  faTimes,
-  faInfoCircle,
-} from "@fortawesome/free-solid-svg-icons";
+import { faCheck, faTimes, faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./Edit.css";
 import logo from "../asset/Logo-GameNation.png";
@@ -48,7 +44,7 @@ const Edit = () => {
       .then((user) => {
         setUserValue(user.data.data);
       })
-      .catch((err) => console.log(err.message));
+      .catch((err) => navigate("/login"));
   }, []);
 
   useEffect(() => {
@@ -81,25 +77,26 @@ const Edit = () => {
     setErrMsg("");
   }, [email]);
 
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
     const v1 = EMAIL_REGEX.test(email);
     if (!v1) {
       setErrMsg("Invalid Entry");
       return;
     }
 
-    const dataEdit = {
+    const data = {
       fullName,
       email,
       city,
       dob,
     };
-
+    console.log(data);
     axios
-      .put("/user/profile/" + userId, dataEdit)
+      .put("/user/profile/" + userId, data, { headers: { Authorization: token } })
       .then((response) => {
         setSuccess(true);
-        navigate(-1);
+        navigate("/profile/" + userId);
       })
       .catch((err) => {
         if (!err?.response) {
@@ -107,6 +104,7 @@ const Edit = () => {
         } else if (err.response?.status === 409) {
           setErrMsg("Edit Profile Failed");
         }
+        navigate("/login");
         errRef.current.focus();
       });
   };
@@ -135,34 +133,22 @@ const Edit = () => {
                 <span className="absolute left-0 w-48 h-48 -ml-2 transition-all duration-300 origin-top-right -rotate-90 -translate-x-full translate-y-12 bg-gray-900 group-hover:-rotate-180 ease"></span>
                 <span className="relative">Back to Profile</span>
               </span>
-              <span
-                className="absolute bottom-0 right-0 w-full h-12 -mb-1 -mr-1 transition-all duration-200 ease-linear bg-gray-900 rounded-lg group-hover:mb-0 group-hover:mr-0"
-                data-rounded="rounded-lg"
-              ></span>
+              <span className="absolute bottom-0 right-0 w-full h-12 -mb-1 -mr-1 transition-all duration-200 ease-linear bg-gray-900 rounded-lg group-hover:mb-0 group-hover:mr-0" data-rounded="rounded-lg"></span>
             </div>
           </Link>
           <div className="edit-page">
             <img src={logo} alt="logo" className="regis_logo-gn" />
-            <div
-              data-id="0"
-              className=" w-[600px] h-[590px] mt-5 mx-auto relative inline-block px-4 py-2 font-medium group"
-            >
+            <div data-id="0" className=" w-[600px] h-[590px] mt-5 mx-auto relative inline-block px-4 py-2 font-medium group">
               <span className="absolute inset-0 w-full h-full   translate-x-1 translate-y-1 bg-black "></span>
               <span className="absolute inset-0 w-full h-full bg-slate-600 border-2 border-black "></span>
               <span className="relative text-white text-lg ">
                 <div className="">
                   <div className="edit-comp">
-                    <p
-                      ref={errRef}
-                      className={errMsg ? "edit-errmsg" : "offscreen"}
-                      aria-live="assertive"
-                    >
+                    <p ref={errRef} className={errMsg ? "edit-errmsg" : "offscreen"} aria-live="assertive">
                       {errMsg}
                     </p>
-                    <form className="mx-auto mt-[40px]">
-                      <h1 className="edit-title text-center font-semibold text-xl">
-                        Edit Your Agent
-                      </h1>
+                    <form className="mx-auto mt-[40px]" onSubmit={handleSubmit}>
+                      <h1 className="edit-title text-center font-semibold text-xl">Edit Your Agent</h1>
                       <div className="flex ml-[120px]">
                         <div className="relevant edit-form">
                           <label htmlFor="fullName">
@@ -170,11 +156,7 @@ const Edit = () => {
                             <span className={validFullName ? "valid" : "hide"}>
                               <FontAwesomeIcon icon={faCheck} />
                             </span>
-                            <span
-                              className={
-                                validFullName || !fullName ? "hide" : "invalid"
-                              }
-                            >
+                            <span className={validFullName || !fullName ? "hide" : "invalid"}>
                               <FontAwesomeIcon icon={faTimes} />
                             </span>
                           </label>
@@ -193,14 +175,7 @@ const Edit = () => {
                             onFocus={() => setFullNameFocus(true)}
                             onBlur={() => setFullNameFocus(false)}
                           />
-                          <p
-                            id="uidnote"
-                            className={
-                              fullNameFocus && fullName && !validFullName
-                                ? "instructions"
-                                : "offscreen"
-                            }
-                          >
+                          <p id="uidnote" className={fullNameFocus && fullName && !validFullName ? "instructions" : "offscreen"}>
                             <FontAwesomeIcon icon={faInfoCircle} />
                             Please input your name correctly.
                           </p>
@@ -209,11 +184,7 @@ const Edit = () => {
                             <span className={validEmail ? "valid" : "hide"}>
                               <FontAwesomeIcon icon={faCheck} />
                             </span>
-                            <span
-                              className={
-                                validEmail || !email ? "hide" : "invalid"
-                              }
-                            >
+                            <span className={validEmail || !email ? "hide" : "invalid"}>
                               <FontAwesomeIcon icon={faTimes} />
                             </span>
                           </label>
@@ -233,16 +204,8 @@ const Edit = () => {
                             onBlur={() => setEmailFocus(false)}
                           />
 
-                          <p
-                            id="uidnote"
-                            className={
-                              emailFocus && email && !validEmail
-                                ? "instructions"
-                                : "offscreen"
-                            }
-                          >
-                            <FontAwesomeIcon icon={faInfoCircle} /> Please input
-                            your email account correctly
+                          <p id="uidnote" className={emailFocus && email && !validEmail ? "instructions" : "offscreen"}>
+                            <FontAwesomeIcon icon={faInfoCircle} /> Please input your email account correctly
                           </p>
 
                           <label htmlFor="city">
@@ -250,11 +213,7 @@ const Edit = () => {
                             <span className={validCity ? "valid" : "hide"}>
                               <FontAwesomeIcon icon={faCheck} />
                             </span>
-                            <span
-                              className={
-                                validCity || !city ? "hide" : "invalid"
-                              }
-                            >
+                            <span className={validCity || !city ? "hide" : "invalid"}>
                               <FontAwesomeIcon icon={faTimes} />
                             </span>
                           </label>
@@ -273,16 +232,8 @@ const Edit = () => {
                             onFocus={() => setCityFocus(true)}
                             onBlur={() => setCityFocus(false)}
                           />
-                          <p
-                            id="uidnote"
-                            className={
-                              cityFocus && city && !validCity
-                                ? "instructions"
-                                : "offscreen"
-                            }
-                          >
-                            <FontAwesomeIcon icon={faInfoCircle} /> 4 to 24
-                            characters.
+                          <p id="uidnote" className={cityFocus && city && !validCity ? "instructions" : "offscreen"}>
+                            <FontAwesomeIcon icon={faInfoCircle} /> 4 to 24 characters.
                             <br />
                             Must begin with a letter.
                             <br />
@@ -294,9 +245,7 @@ const Edit = () => {
                             <span className={validDob ? "valid" : "hide"}>
                               <FontAwesomeIcon icon={faCheck} />
                             </span>
-                            <span
-                              className={validDob || !dob ? "hide" : "invalid"}
-                            >
+                            <span className={validDob || !dob ? "hide" : "invalid"}>
                               <FontAwesomeIcon icon={faTimes} />
                             </span>
                           </label>
@@ -315,16 +264,8 @@ const Edit = () => {
                             onFocus={() => setDobFocus(true)}
                             onBlur={() => setDobFocus(false)}
                           />
-                          <p
-                            id="uidnote"
-                            className={
-                              dobFocus && dob && !validDob
-                                ? "instructions"
-                                : "offscreen"
-                            }
-                          >
-                            <FontAwesomeIcon icon={faInfoCircle} /> 4 to 24
-                            characters.
+                          <p id="uidnote" className={dobFocus && dob && !validDob ? "instructions" : "offscreen"}>
+                            <FontAwesomeIcon icon={faInfoCircle} /> 4 to 24 characters.
                             <br />
                             Must begin with a letter.
                             <br />
@@ -334,18 +275,14 @@ const Edit = () => {
 
                         <div className="form"></div>
                       </div>
+                      <button disabled={!validEmail || !validFullName ? true : false} className="px-5 py-2.5 relative rounded group font-medium text-white inline-block ml-[230px] mt-[60px]">
+                        <span className="absolute top-0 left-0 w-full h-full rounded opacity-50 filter blur-sm bg-gradient-to-br from-purple-600 to-blue-500"></span>
+                        <span className="h-full w-full inset-0 absolute mt-0.5 ml-0.5 bg-gradient-to-br filter group-active:opacity-0 rounded opacity-50 from-purple-600 to-blue-500"></span>
+                        <span className="absolute inset-0 w-full h-full transition-all duration-200 ease-out rounded shadow-xl bg-gradient-to-br filter group-active:opacity-0 group-hover:blur-sm from-purple-600 to-blue-500"></span>
+                        <span className="absolute inset-0 w-full h-full transition duration-200 ease-out rounded bg-gradient-to-br to-slate-600 from-slate-500"></span>
+                        <span className="relative">Submit</span>
+                      </button>
                     </form>
-                    <button
-                      disabled={!validEmail || !validFullName ? true : false}
-                      className="px-5 py-2.5 relative rounded group font-medium text-white inline-block ml-[230px] mt-[60px]"
-                      onClick={handleSubmit}
-                    >
-                      <span className="absolute top-0 left-0 w-full h-full rounded opacity-50 filter blur-sm bg-gradient-to-br from-purple-600 to-blue-500"></span>
-                      <span className="h-full w-full inset-0 absolute mt-0.5 ml-0.5 bg-gradient-to-br filter group-active:opacity-0 rounded opacity-50 from-purple-600 to-blue-500"></span>
-                      <span className="absolute inset-0 w-full h-full transition-all duration-200 ease-out rounded shadow-xl bg-gradient-to-br filter group-active:opacity-0 group-hover:blur-sm from-purple-600 to-blue-500"></span>
-                      <span className="absolute inset-0 w-full h-full transition duration-200 ease-out rounded bg-gradient-to-br to-slate-600 from-slate-500"></span>
-                      <span className="relative">Submit</span>
-                    </button>
                   </div>
                 </div>
               </span>

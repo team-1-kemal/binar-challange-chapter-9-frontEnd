@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import "./Profile.css";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import axios from "../api/axios";
 
 const Profile = () => {
   const { userId } = useParams();
   const token = localStorage.getItem("token");
+  const navigate = useNavigate();
 
   const [user, setUser] = useState({});
   const history = user.GameHistories;
@@ -15,7 +16,7 @@ const Profile = () => {
       .then((user) => {
         setUser(user.data.data);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => navigate("/login"));
   }, []);
 
   return (
