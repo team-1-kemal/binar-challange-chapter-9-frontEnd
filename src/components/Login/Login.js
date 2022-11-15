@@ -2,7 +2,6 @@ import { useRef, useState, useEffect } from "react";
 import { Navigate, Link } from "react-router-dom";
 import axios from "../api/axios";
 import "./Login.css";
-import btnLogin from "../asset/btn-login.png";
 import logo from "../asset/Logo-GameNation.png";
 
 const Login = () => {
@@ -57,68 +56,79 @@ const Login = () => {
       {success ? (
         <Navigate to="/dashboard" />
       ) : (
-        <section className="login-page">
-          <img src={logo} alt="logo" className="login_logo" />
-          <div className="login-comp">
-            <div>
-              <p
-                ref={errRef}
-                className={errMsg ? "errmsg" : "offscreen"}
-                aria-live="assertive"
-              >
-                {errMsg}
-              </p>
-              <div className="login_form">
-                <h1 className="login_title">Welcome Agent!</h1>
-                <p className="login_subtitle text-center">
-                  Please enter your details to get
-                  <br />
-                  sign in to your account
-                </p>
-                <label htmlFor="email" className="login_label">
-                  Email :
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  ref={emailRef}
-                  autoComplete="off"
-                  onChange={(e) => setEmail(e.target.value)}
-                  value={email}
-                  required
-                />
-                <label htmlFor="password" className="login_label">
-                  Password :
-                </label>
-                <input
-                  type="password"
-                  id="password"
-                  autoComplete="off"
-                  onChange={(e) => setPassword(e.target.value)}
-                  value={password}
-                  required
-                />
-                <div className="login_btn-login-comp">
-                  <img
-                    src={btnLogin}
-                    alt="button"
-                    className="login_btn-login-base absolute"
-                  />
-                  <button onClick={handleSubmit}>
-                    <div
-                      className="login_btn-login relative"
-                      alt="button"
-                    ></div>
-                  </button>
-                </div>
+        <section className="login-page flex justify-center bg-cover min-h-screen">
+          <img src={logo} alt="logo" className="absolute w-[150px]" />
+          <div className="flex lg:mt-[30px]">
+            <div className=" flex justify-center items-center">
+              <div class="absolute w-[300px] h-[400px] lg:w-[400px] lg:h-[500px] font-medium group">
+                <span class="absolute  w-full h-full transform translate-x-1 translate-y-1 bg-black"></span>
+                <span class="absolute  w-full h-full bg-slate-400 border-2 border-black "></span>
               </div>
-              <div className="flex login_text-signup">
-                <p>
-                  Need an Account?&nbsp;
-                  <span className="line">
-                    <Link to="/register">Sign Up</Link>
-                  </span>
+              <div className="absolute mt-[-120px]">
+                <p
+                  ref={errRef}
+                  className={
+                    errMsg
+                      ? "absolute text-red-800 font-bold text-sm ml-[53px] mt-[330px]  lg:mt-[365px] lg:text-lg lg:ml-[60px]"
+                      : "offscreen"
+                  }
+                  aria-live="assertive"
+                >
+                  {errMsg}
                 </p>
+                <div className="flex flex-col w-[250px] lg:w-[300px] mt-28 lg:mt-[120px]">
+                  <h1 className=" text-white text-center text-[20px] lg:text-[28px] lg:mt-[-20px] font-bold">
+                    Welcome Agent!
+                  </h1>
+                  <p className="text-white text-center text-[14px] lg:text-[17px] lg:mb-5">
+                    Please enter your details to get
+                    <br />
+                    sign in to your account
+                  </p>
+                  <label htmlFor="email" className="text-md text-white">
+                    Email :
+                  </label>
+                  <input
+                    type="email"
+                    id="email"
+                    className="w-[250px] h-[30px] lg:h-[40px] lg:w-[300px]"
+                    ref={emailRef}
+                    autoComplete="off"
+                    onChange={(e) => setEmail(e.target.value)}
+                    value={email}
+                    required
+                  />
+                  <label htmlFor="password" className="text-md text-white">
+                    Password :
+                  </label>
+                  <input
+                    type="password"
+                    id="password"
+                    className="w-[250px] h-[30px] lg:h-[40px] lg:w-[300px]"
+                    autoComplete="off"
+                    onChange={(e) => setPassword(e.target.value)}
+                    value={password}
+                    required
+                  />
+                  <div className="login_btn-login-comp flex flex-col justify-center items-center">
+                    <button
+                      onClick={handleSubmit}
+                      class="relative inline-block  mt-[50px] px-8 py-2 font-semibold group lg:px-6 lg:py-3 lg:mt-[70px] mb-7 "
+                    >
+                      <span class="absolute inset-0 w-full h-full transition duration-200 ease-out transform translate-x-1 translate-y-1 bg-black group-hover:-translate-x-0 group-hover:-translate-y-0"></span>
+                      <span class="absolute inset-0 w-full h-full bg-blue-400 border-2 border-black group-hover:bg-black"></span>
+                      <h1 class="relative text-center text-sm lg:text-xl text-white group-hover:text-white">
+                        Login
+                      </h1>
+                    </button>
+                    <p className="text-center text-md mt-[-15px]">
+                      Need an Account?&nbsp;
+                      <span className="line">
+                        <Link to="/register">Sign Up</Link>
+                      </span>
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

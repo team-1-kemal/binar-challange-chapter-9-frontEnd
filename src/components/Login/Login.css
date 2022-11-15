@@ -1,72 +1,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Nunito&display=swap");
 
 .login-page {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  padding: 1rem 0.5rem;
-  min-height: 100vh;
   background-image: url(../asset/bg-login.png);
-  background-size: cover;
-  background-repeat: no-repeat;
-  font-family: "Nunito", sans-serif;
-  font-size: 22px;
 }
 
 .login-comp {
-  width: 100%;
-  max-width: 550px;
-  min-height: 550px;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  padding: 1rem;
   background-image: url(../asset/box-login.png);
   background-size: cover;
-}
-
-.login_logo {
-  height: auto;
-  width: 150px;
-  margin-top: -100px;
-}
-
-.login_title {
-  font-size: 20px;
-  text-align: center;
-  font-weight: 600;
-  margin-top: -70px;
-  padding-bottom: 10px;
-  color: white;
-}
-
-.login_subtitle {
-  font-size: 15px;
-  margin-bottom: 10px;
-  color: white;
-}
-
-.login_label {
-  color: white;
-  font-size: medium;
-}
-
-.login_form {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  flex-grow: 0;
-  width: 300px;
-  margin-left: 120px;
-  margin-top: 100px;
-}
-
-.login_text-signup {
-  margin-top: 40px;
-  margin-left: 175px;
-  font-size: 14px;
 }
 
 a,
@@ -84,70 +24,6 @@ textarea {
   font-size: 18px;
   padding: 0.25rem;
   border-radius: 0.5rem;
-}
-
-label,
-button {
-  margin-top: 1rem;
-}
-
-button {
-  padding: 0.5rem;
-}
-
-.login_btn-login-comp {
-  margin-left: 76px;
-  margin-top: 40px;
-}
-
-.login_btn-login-base {
-  height: auto;
-  width: 140px;
-  margin-top: 30px;
-}
-
-.login_btn-login {
-  height: 51px;
-  width: 102px;
-  border-radius: 10px;
-  background-color: #56240f;
-  margin-top: 0px;
-  margin-left: 10px;
-  transition: bottom ease 0.5s;
-}
-
-.login_btn-login:hover {
-  top: 8px;
-  cursor: pointer;
-}
-
-.login_btn-login:before {
-  content: "Login";
-  font-size: 20px;
-  font-weight: 500;
-  color: white;
-  padding-left: 0px;
-  padding-top: 7px;
-  height: 46px;
-  width: 97px;
-  border-radius: 10px;
-  background-color: #ff2273;
-  display: block;
-  position: absolute;
-  margin-left: 3px;
-  margin-top: 3px;
-}
-
-.login_btn-login:after {
-  content: "";
-  height: 4px;
-  width: 20px;
-  border-radius: 10px;
-  background-color: white;
-  display: block;
-  position: absolute;
-  margin-left: 70px;
-  margin-top: 8px;
 }
 
 .instructions {
@@ -187,10 +63,10 @@ button {
   position: absolute;
   color: firebrick;
   font-weight: bold;
-  font-size: medium;
+  font-size: small;
   padding: 0.5rem;
-  margin-left: 180px;
-  margin-top: 290px;
+  margin-left: 53px;
+  margin-top: 309px;
 }
 
 .line {

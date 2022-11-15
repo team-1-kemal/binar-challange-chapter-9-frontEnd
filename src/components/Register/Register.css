@@ -1,172 +1,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Nunito&display=swap");
 
-.register-page {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  background-color: dodgerblue;
-  font-family: "Nunito", sans-serif;
-  font-size: 15px;
-  background-size: cover;
+.bg-regis {
   background-image: url(../asset/bg-register.png);
-}
-
-.regis_logo-gn {
-  height: auto;
-  width: 150px;
-  align-items: center;
-  margin-top: -100px;
-}
-
-.regis_box-success {
-  height: auto;
-  width: 400px;
-  margin-top: -100px;
-}
-
-.register-comp {
-  width: 770px;
-  height: 550px;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  padding: 1rem;
-  background-image: url(../asset/box-register.png);
-  background-repeat: no-repeat;
-  background-size: cover;
-  margin-left: -300px;
-  margin-top: -10px;
-}
-
-.regis_success {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  background-color: dodgerblue;
-  font-family: "Nunito", sans-serif;
-  font-size: 22px;
-  background-size: cover;
-  background-image: url(../asset/bg-register.png);
-}
-
-.regis_success-text {
-  margin-top: -180px;
-  margin-left: 85px;
-}
-
-.regis-title {
-  font-size: 25px;
-  font-weight: 600;
-  color: white;
-  margin-left: 270px;
-  margin-top: 50px;
-}
-.form {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  width: 250px;
-  margin-left: 85px;
-  margin-top: 10px;
 }
 
 a,
 a:visited {
   color: #fff;
-}
-
-input[type="text"],
-input[type="password"],
-input[type="email"],
-input[type="date"],
-button,
-textarea {
-  font-family: "Nunito", sans-serif;
-  font-size: 10px;
-  padding: 0.25rem;
-  border-radius: 0.5rem;
-}
-
-label,
-button {
-  margin-top: 1rem;
-}
-
-button {
-  padding: 0.5rem;
-}
-
-.register_btn-regis-comp {
-  margin-left: 10px;
-  margin-top: 110px;
-}
-
-.register_btn-regis-base {
-  height: auto;
-  width: 120px;
-  margin-left: 310px;
-  margin-top: -51px;
-}
-
-.register_btn-regis {
-  height: 45px;
-  width: 89px;
-  border-radius: 10px;
-  background-color: #56240f;
-  margin-top: -82px;
-  margin-left: 317px;
-  transition: bottom ease 0.5s;
-}
-
-.register_btn-regis:hover {
-  top: 8px;
-  cursor: pointer;
-}
-
-.register_btn-regis:before {
-  content: "Register";
-  font-size: 14px;
-  font-weight: 500;
-  color: white;
-  padding-left: 0px;
-  padding-top: 12px;
-  height: 41px;
-  width: 85px;
-  border-radius: 10px;
-  background-color: #00bfc3;
-  display: block;
-  position: absolute;
-  margin-left: 2px;
-  margin-top: 2px;
-}
-.register_btn-regis:after {
-  content: "";
-  height: 4px;
-  width: 22px;
-  border-radius: 10px;
-  background-color: white;
-  display: block;
-  position: absolute;
-  margin-left: 55px;
-  margin-top: 8px;
-}
-
-.instructions {
-  font-size: 0.75rem;
-  border-radius: 0.5rem;
-  background: #000;
-  color: #fff;
-  padding: 0.25rem;
-  position: relative;
-  bottom: -10px;
-}
-
-.instructions > svg {
-  margin-right: 0.25rem;
 }
 
 .offscreen {
@@ -191,10 +31,7 @@ button {
 .reg-errmsg {
   color: firebrick;
   font-weight: bold;
-  padding: 0.5rem;
   position: absolute;
-  margin-top: 328px;
-  margin-left: 295px;
 }
 
 .line {

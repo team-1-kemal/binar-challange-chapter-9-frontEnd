@@ -122,10 +122,13 @@ const Register = () => {
   return (
     <>
       {success ? (
-        <section className="regis_success flex">
-          <div className="relative">
-            <img src={boxRegis} alt="box" className="regis_box-success" />
-            <div className="regis_success-text flex flex-col items-center absolute">
+        <section className="bg-regis bg-center my-auto min-h-screen flex flex-col bg-cover items-center">
+          <div className="flex relative mx-auto my-auto items-center min-h-screen">
+            <div class="absolute w-[200px] h-[200px] lg:w-[245px] ml-[-15px] font-medium group">
+              <span class="absolute w-full h-full transform translate-x-1 translate-y-1 bg-black"></span>
+              <span class="absolute  w-full h-full bg-slate-400 border-2 border-black "></span>
+            </div>
+            <div className="relative flex flex-col text-center lg:text-xl">
               <h1>Registration Success!</h1>
               <p>
                 Please&nbsp;
@@ -135,21 +138,31 @@ const Register = () => {
           </div>
         </section>
       ) : (
-        <section className="register-page">
-          <img src={logo} alt="logo" className="regis_logo-gn" />
-          <div className="register-comp">
+        <section className="bg-regis bg-center my-auto min-h-screen flex flex-col bg-cover items-center">
+          <img src={logo} alt="logo" className="w-[150px]" />
+          <div className="flex flex-col lg:min-h-[720px] lg:my-auto">
             <p
               ref={errRef}
-              className={errMsg ? "reg-errmsg" : "offscreen"}
+              className={
+                errMsg
+                  ? "reg-errmsg z-50 text-center ml-[40px] mt-[380px] relative lg:mt-[275px] lg:ml-[220px]"
+                  : "offscreen"
+              }
               aria-live="assertive"
             >
               {errMsg}
             </p>
-            <form onSubmit={handlerSubmit}>
-              <h1 className="regis-title">Create New Agent</h1>
-              <div className="flex-row flex">
-                <div className="form">
-                  <label htmlFor="fullName">
+            <form onSubmit={handlerSubmit} className="">
+              <div class="absolute w-[300px] h-[550px] mt-[-30px] ml-[-25px] lg:w-[650px] lg:h-[500px]  font-medium group">
+                <span class="absolute w-full h-full transform translate-x-1 translate-y-1 bg-black"></span>
+                <span class="absolute  w-full h-full bg-slate-400 border-2 border-black "></span>
+              </div>
+              <h1 className="relative text-center text-lg font-semibold text-white mb-3 lg:text-2xl lg:mb-10">
+                Create New Agent
+              </h1>
+              <div className="flex-col flex lg:flex-row lg:gap-10 justify-center items-center ">
+                <div className="relative flex flex-col">
+                  <label htmlFor="fullName" className="text-white ">
                     Full Name:
                     <span className={validFullName ? "valid" : "hide"}>
                       <FontAwesomeIcon icon={faCheck} />
@@ -165,6 +178,7 @@ const Register = () => {
                   <input
                     type="text"
                     id="fullName"
+                    className="w-[250px] h-[30px] lg:w-[280px] lg:h-[35px]"
                     name="fullName"
                     ref={userRef}
                     autoComplete="off"
@@ -179,14 +193,14 @@ const Register = () => {
                     id="uidnote"
                     className={
                       fullNameFocus && fullName && !validFullName
-                        ? "instructions"
+                        ? "relative max-w-[250px] text-[10px] rounded-[8px] text-white bg-black p-1"
                         : "offscreen"
                     }
                   >
-                    <FontAwesomeIcon icon={faInfoCircle} />
+                    <FontAwesomeIcon icon={faInfoCircle} className="mr-1" />
                     Please input your name correctly.
                   </p>
-                  <label htmlFor="email">
+                  <label htmlFor="email" className="text-white">
                     Email:
                     <span className={validEmail ? "valid" : "hide"}>
                       <FontAwesomeIcon icon={faCheck} />
@@ -199,6 +213,7 @@ const Register = () => {
                   <input
                     type="email"
                     id="email"
+                    className="w-[250px] h-[30px] lg:w-[280px] lg:h-[35px]"
                     name="email"
                     autoComplete="off"
                     onChange={(e) => setEmail(e.target.value)}
@@ -213,15 +228,15 @@ const Register = () => {
                     id="uidnote"
                     className={
                       emailFocus && email && !validEmail
-                        ? "instructions"
+                        ? "relative max-w-[250px] text-[10px] rounded-[8px] text-white bg-black p-1"
                         : "offscreen"
                     }
                   >
-                    <FontAwesomeIcon icon={faInfoCircle} /> Please input your
-                    email account correctly
+                    <FontAwesomeIcon icon={faInfoCircle} className="mr-1" />{" "}
+                    Please input your email correctly
                   </p>
 
-                  <label htmlFor="city">
+                  <label htmlFor="city" className="text-white">
                     City:
                     <span className={validCity ? "valid" : "hide"}>
                       <FontAwesomeIcon icon={faCheck} />
@@ -234,6 +249,7 @@ const Register = () => {
                   <input
                     type="text"
                     id="city"
+                    className="w-[250px] h-[30px] lg:w-[280px] lg:h-[35px]"
                     name="city"
                     autoComplete="off"
                     onChange={(e) => setCity(e.target.value)}
@@ -247,11 +263,12 @@ const Register = () => {
                     id="uidnote"
                     className={
                       cityFocus && city && !validCity
-                        ? "instructions"
+                        ? "relative max-w-[250px] text-[10px] rounded-[8px] text-white bg-black p-1"
                         : "offscreen"
                     }
                   >
-                    <FontAwesomeIcon icon={faInfoCircle} /> 4 to 24 characters.
+                    <FontAwesomeIcon icon={faInfoCircle} className="mr-1" /> 4
+                    to 24 characters.
                     <br />
                     Must begin with a letter.
                     <br />
@@ -259,8 +276,8 @@ const Register = () => {
                   </p>
                 </div>
 
-                <div className="form">
-                  <label htmlFor="dob">
+                <div className="flex flex-col relative">
+                  <label htmlFor="dob" className="text-white">
                     Date of Birth:
                     <span className={validDob ? "valid" : "hide"}>
                       <FontAwesomeIcon icon={faCheck} />
@@ -273,6 +290,7 @@ const Register = () => {
                   <input
                     type="date"
                     id="dob"
+                    className="w-[250px] h-[30px] lg:w-[280px] lg:h-[35px]"
                     name="dob"
                     autoComplete="off"
                     onChange={(e) => setDob(e.target.value)}
@@ -286,18 +304,19 @@ const Register = () => {
                     id="uidnote"
                     className={
                       dobFocus && dob && !validDob
-                        ? "instructions"
+                        ? "relative max-w-[250px] text-[10px] rounded-[8px] text-white bg-black p-1"
                         : "offscreen"
                     }
                   >
-                    <FontAwesomeIcon icon={faInfoCircle} /> 4 to 24 characters.
+                    <FontAwesomeIcon icon={faInfoCircle} className="mr-1" /> 4
+                    to 24 characters.
                     <br />
                     Must begin with a letter.
                     <br />
                     Letters, numbers, underscores, hypens allowed.
                   </p>
 
-                  <label htmlFor="password">
+                  <label htmlFor="password" className="text-white">
                     Password:
                     <span className={validPwd ? "valid" : "hide"}>
                       <FontAwesomeIcon icon={faCheck} />
@@ -312,6 +331,7 @@ const Register = () => {
                   <input
                     type="password"
                     id="password"
+                    className="w-[250px] h-[30px] lg:w-[280px] lg:h-[35px]"
                     name="password"
                     onChange={(e) => setPassword(e.target.value)}
                     required
@@ -323,10 +343,13 @@ const Register = () => {
                   <p
                     id="pwdnote"
                     className={
-                      pwdFocus && !validPwd ? "instructions" : "offscreen"
+                      pwdFocus && !validPwd
+                        ? "relative max-w-[250px] text-[10px] rounded-[8px] text-white bg-black p-1"
+                        : "offscreen"
                     }
                   >
-                    <FontAwesomeIcon icon={faInfoCircle} />8 to 24 characters.
+                    <FontAwesomeIcon icon={faInfoCircle} className="mr-1" />8 to
+                    24 characters.
                     <br />
                     Must include uppercase and lowercase letters, a number and a
                     special character.
@@ -338,7 +361,7 @@ const Register = () => {
                     <span aria-label="percent">%</span>
                   </p>
 
-                  <label htmlFor="confirm_pwd">
+                  <label htmlFor="confirm_pwd" className="text-white">
                     Confirm Password:
                     <span className={validMatch && matchPwd ? "valid" : "hide"}>
                       <FontAwesomeIcon icon={faCheck} />
@@ -352,6 +375,7 @@ const Register = () => {
                   <input
                     type="password"
                     id="confirm_pwd"
+                    className="w-[250px] h-[30px] lg:w-[280px] lg:h-[35px]"
                     name="confirm_pwd"
                     onChange={(e) => setMatchPwd(e.target.value)}
                     required
@@ -363,34 +387,33 @@ const Register = () => {
                   <p
                     id="confirmnote"
                     className={
-                      matchFocus && !validMatch ? "instructions" : "offscreen"
+                      matchFocus && !validMatch
+                        ? "relative max-w-[250px] text-[10px] rounded-[8px] text-white bg-black p-1"
+                        : "offscreen"
                     }
                   >
-                    <FontAwesomeIcon icon={faInfoCircle} />
+                    <FontAwesomeIcon icon={faInfoCircle} className="mr-1" />
                     Must match the first password input field.
                   </p>
                 </div>
               </div>
-              <div className="register_btn-regis-comp">
-                <img
-                  src={btnRegis}
-                  alt="button"
-                  className="absolute register_btn-regis-base"
-                />
+              <div className="absolute lg:ml-[170px]">
                 <button
+                  class="absolute inline-block  ml-[70px] mt-[50px] px-6 py-2 font-semibold group lg:px-6 lg:py-3 lg:mt-[70px] mb-7 "
                   disabled={
                     !validPwd || !validMatch || !validEmail || !validFullName
                       ? true
                       : false
                   }
                 >
-                  <div
-                    className="register_btn-regis relative"
-                    alt="button"
-                  ></div>
+                  <span class="absolute inset-0 w-full h-full transition duration-200 ease-out transform translate-x-1 translate-y-1 bg-black group-hover:-translate-x-0 group-hover:-translate-y-0"></span>
+                  <span class="absolute inset-0 w-full h-full bg-red-400 border-2 border-black group-hover:bg-black"></span>
+                  <h1 class="relative text-center text-sm lg:text-xl text-white group-hover:text-white">
+                    Submit
+                  </h1>
                 </button>
               </div>
-              <p className="register_text-sign-in">
+              <p className="absolute mt-[100px] ml-[20px] text-center lg:ml-[200px] lg:mt-[140px]">
                 Already registered?&nbsp;
                 <span className="line">
                   <Link to="/login"> Sign In</Link>

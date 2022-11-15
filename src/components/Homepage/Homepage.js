@@ -1,50 +1,57 @@
 import "./Homepage.css";
 import logo from "../asset/Logo-GameNation.png";
 import gameboy from "../asset/gameboy.png";
-import btnRegister from "../asset/btn-register.png";
-import btnLogin from "../asset/btn-login.png";
 import { Link } from "react-router-dom";
 const Homepage = () => {
   return (
-    <div className=" mx-auto">
-      <div className=" mx-auto home w-full h-screen bg-cover bg-center flex">
+    <section className="min-h-screen bg-home bg-cover">
+      <div className="">
         <br />
-        <img src={logo} alt="Logo" className="logo" />
-        <div className="mx-auto w-[1600px] flex justify-between ">
-          <div className="home-title ">
-            <h1 className="maintitle mt-[70px]">
-              Let <br /> the fun <br /> begin!
-            </h1>
-            <h4 className="subtitle">
-              Play our games and show <br /> your skills to the world!
-            </h4>
-            <div className="container-btn flex">
-              <div className="container-register">
-                <img
-                  className="absolute btn-regis-base"
-                  src={btnRegister}
-                  alt="btnRegister"
-                />
-                <Link to="/register">
-                  <div className="btn-regis relative" alt="button"></div>
-                </Link>
-              </div>
-              <div className="container-login">
-                <img
-                  className="absolute btn-login-base"
-                  src={btnLogin}
-                  alt="btnLogin"
-                />
-                <Link to="/login">
-                  <div className="btn-login relative" alt="button"></div>
-                </Link>
-              </div>
+        <div className="flex flex-col lg:mt-[-120px] justify-center items-center mx-auto min-h-screen">
+          <img
+            src={logo}
+            alt="Logo"
+            className="absolute w-28 mt-[-340px] lg:w-[150px] lg:mt-[-180px]"
+          />
+          <div className="flex flex-col items-center lg:flex-row ] lg:gap-[80px] 2xl:gap-40 ">
+            <div className="flex flex-col my-auto lg:max-w-lg  ">
+              <h1 className="text-4xl text-center max-w-xs pt-5 lg:text-left lg:text-8xl font-bold">
+                Let the fun begin!
+              </h1>
+              <h4 className="p-2 text-center max-w-xs md:text-xl lg:text-left lg:ml-[-5px] lg:mt-4 lg:text-2xl">
+                Play our games and show your skills to the world!
+              </h4>
             </div>
+            <img
+              className="w-[300px] mt-[-20px] lg:w-[450px] lg:pt-[140px] "
+              src={gameboy}
+              alt="gameboy pic"
+            />
           </div>
-          <img className="gameboy" src={gameboy} alt="gameboy pic" />
+          <div className="flex flex-col mt-[-40px] gap-7 max-w-[150px] lg:flex-row lg:ml-[-700px] lg:mt-[-150px] 2xl:ml-[-780px]">
+            <Link to="/login">
+              <a class="relative inline-block px-6 py-2 font-semibold group lg:px-8 lg:py-4">
+                <span class="absolute inset-0 w-full h-full transition duration-200 ease-out transform translate-x-1 translate-y-1 bg-black group-hover:-translate-x-0 group-hover:-translate-y-0"></span>
+                <span class="absolute inset-0 w-full h-full bg-red-400 border-2 border-black group-hover:bg-black"></span>
+                <h1 class="relative text-center lg:text-xl text-white group-hover:text-white">
+                  Login
+                </h1>
+              </a>
+            </Link>
+
+            <Link to="/register">
+              <a class="relative inline-block px-4 py-2 font-semibold group lg:px-6 lg:py-4">
+                <span class="absolute inset-0 w-full h-full transition duration-200 ease-out transform translate-x-1 translate-y-1 bg-black group-hover:-translate-x-0 group-hover:-translate-y-0"></span>
+                <span class="absolute inset-0 w-full h-full bg-blue-400 border-2 border-black group-hover:bg-black"></span>
+                <h1 class="relative text-center lg:text-xl text-white group-hover:text-white">
+                  Register
+                </h1>
+              </a>
+            </Link>
+          </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 
